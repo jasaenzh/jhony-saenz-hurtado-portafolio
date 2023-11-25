@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import { findAllUsers, findByIdAndDelete, findByIdAndUpdate, findByIdUser, insertUser } from "../services/users.services";
 import { cathedAsync } from "../utils/catchedAsync";
 import { responseController } from "../utils/responseControllers";
+import { RequestExtends } from "../interfaces/reqExtends.interface";
 
-const getUsers = cathedAsync(async (req: Request, res: Response) => {
+const getUsers = cathedAsync(async (req: RequestExtends, res: Response) => {
   const users = await findAllUsers()
   responseController(res, 200, users)
 })
