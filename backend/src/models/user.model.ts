@@ -32,6 +32,10 @@ const User = connectDB.define<UserModel>('User',
     aboutMe: {
       type: DataTypes.TEXT,
     },
+    image: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     role: {
       type: DataTypes.ENUM(...Object.values(UserRole)),
       allowNull: false,

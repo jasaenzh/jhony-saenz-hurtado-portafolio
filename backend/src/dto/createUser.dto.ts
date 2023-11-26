@@ -6,6 +6,7 @@ class CreateUserDTO {
   public secondLastName: string;
   public birthdate: string;
   public aboutMe: string;
+  public image: string;
 
   constructor(
     firstName: string,
@@ -14,6 +15,7 @@ class CreateUserDTO {
     secondLastName: string,
     birthdate: string,
     aboutMe: string,
+    image: string,
   ) {
     this.firstName = firstName;
     this.secondName = secondName;
@@ -21,6 +23,7 @@ class CreateUserDTO {
     this.secondLastName = secondLastName;
     this.birthdate = birthdate;
     this.aboutMe = aboutMe;
+    this.image = image;
   }
 }
 
