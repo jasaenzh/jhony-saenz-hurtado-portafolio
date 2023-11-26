@@ -5,7 +5,7 @@ import User from "../models/user.model";
 import { ClientError } from "../utils/errorsResponse";
 
 const insertUser = async (user: CreateUserDTO): Promise<UserInterface> => {
-  const { firstName, secondName, lastName, secondLastName, birthdate } = user;
+  const { firstName, secondName, lastName, secondLastName, birthdate, aboutMe } = user;
   if (!firstName || !lastName || !birthdate) {
     throw new ClientError("Falta informacion");
   }
@@ -14,6 +14,7 @@ const insertUser = async (user: CreateUserDTO): Promise<UserInterface> => {
     secondName,
     lastName,
     secondLastName,
+    aboutMe,
     birthdate,
   });
   return newUser;

@@ -12,5 +12,6 @@ export interface UserInterface extends AuthInterface {
   lastName: string;
   secondLastName: string;
   birthdate: string;
+  aboutMe: string;
   role: UserRole;
 }
