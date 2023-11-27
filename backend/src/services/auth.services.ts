@@ -5,7 +5,7 @@ import { ClientError } from "../utils/errorsResponse";
 import { encrypt, verified } from "../utils/hashPwd.handle";
 import { generateToken } from "../utils/jwt.handle";
 
-const registerServiceNewUser = async ({ firstName, secondName, lastName, secondLastName, birthdate, email, password, aboutMe, image }: UserInterface) => {
+const registerServiceNewUser = async ({ firstName, secondName, lastName, secondLastName, birthdate, email, password, aboutMe, image, }: UserInterface) => {
 
   if (!firstName || !lastName || !birthdate || !email || !password) {
     throw new ClientError("Falta informacion", 400);

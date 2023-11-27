@@ -1,6 +1,7 @@
 import { CreateUserDTO } from "../dto/createUser.dto";
 import { UpdateUserDTO } from "../dto/updateUser.dto";
 import { UserInterface, UserRole } from "../interfaces/user.interface";
+import Skill from "../models/skill.model";
 import User from "../models/user.model";
 import { ClientError } from "../utils/errorsResponse";
 
@@ -21,7 +22,16 @@ const insertUser = async (user: CreateUserDTO): Promise<UserInterface> => {
 }
 
 const findAllUsers = async (): Promise<UserInterface[]> => {
-  const users = await User.findAll();
+  const users = await User.findAll({
+    attributes: { exclude: ['password'] },
+    include: [
+      {
+        model: Skill,
+        attributes: { exclude: ['id'] },
+        through: { attributes: [] },
+      }
+    ]
+  });
   return users
 }
 
@@ -73,7 +83,7 @@ const findByIdAndDelete = async (id: string) => {
   const removeUser = await User.destroy({ where: { id: id } })
 
   if (!removeUser) {
-    throw new ClientError("No se encuentra el ID");
+    throw new ClientError("No se pudo eliminar el registro");
   }
   return removeUser;
 

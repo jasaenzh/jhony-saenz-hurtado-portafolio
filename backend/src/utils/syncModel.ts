@@ -1,7 +1,7 @@
 import { connectDB } from "../config/dbConfig";
-import User from "../models/user.model";
+import Skill from "../models/skill.model";
 
-const syncModel = async () => {
+const syncModels = async () => {
   try {
     await connectDB.sync({ alter: true });
     console.log('Modelos sincronizados correctamente con la base de datos.');
@@ -10,4 +10,4 @@ const syncModel = async () => {
   }
 };
 
-export { syncModel }
+export { syncModels }

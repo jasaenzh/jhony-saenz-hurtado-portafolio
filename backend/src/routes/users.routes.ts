@@ -5,11 +5,11 @@ import { adminProfile } from "../middlewares/adminSession.middleware";
 
 const usersRouter = Router();
 
-usersRouter.get('/', checkJWT, adminProfile, getUsers)
-usersRouter.get('/:id', getUser)
-usersRouter.post('/', postUser)
-usersRouter.patch('/:id', updateUser)
-usersRouter.delete('/:id', deleteUser)
+usersRouter.get('/', getUsers)
+usersRouter.get('/:id', checkJWT, adminProfile, getUser)
+// usersRouter.post('/', postUser)
+usersRouter.patch('/:id', checkJWT, adminProfile, updateUser)
+usersRouter.delete('/:id', checkJWT, adminProfile, deleteUser)
 
 
 export default usersRouter;

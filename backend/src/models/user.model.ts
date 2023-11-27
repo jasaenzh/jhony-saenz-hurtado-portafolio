@@ -1,8 +1,11 @@
 import { DataTypes, Model } from "sequelize";
 import { connectDB } from "../config/dbConfig";
 import { UserInterface, UserRole } from "../interfaces/user.interface";
+import Skill from "./skill.model";
 
-interface UserModel extends Model, Omit<UserInterface, "id"> { }
+interface UserModel extends Model, Omit<UserInterface, "id"> {
+  addSkills(skills: any): unknown;
+}
 
 const User = connectDB.define<UserModel>('User',
   {
@@ -55,5 +58,9 @@ const User = connectDB.define<UserModel>('User',
     timestamps: false
   }
 )
+
+User.belongsToMany(Skill, { through: "UserSkill" })
+Skill.belongsToMany(User, { through: "UserSkill" })
+
 
 export default User;
