@@ -12,7 +12,7 @@ const insertSkill = async (skill: CreateSkillDTO): Promise<SkillInterface> => {
     throw new ClientError("Falta informacion")
   }
 
-  const newSkill = Skill.create({
+  const newSkill = await Skill.create({
     nameSkill,
     description,
     image

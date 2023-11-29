@@ -11,13 +11,8 @@ const registerController = cathedAsync(async (req: Request, res: Response) => {
   const urlCloudinary = await uploadFileCloudinary(`${pathCloudinary}`)
   body = { ...body, image: urlCloudinary }
   const registerUser = await registerServiceNewUser(body);
-
   const { skills } = req.body
-
-  if (skills && skills.length > 0) {
-    await registerUser.addSkills(skills);
-  }
-
+  if (skills && skills.length > 0) await registerUser.addSkills(skills);
   responseController(res, 200, registerUser)
 })
 

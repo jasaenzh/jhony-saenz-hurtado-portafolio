@@ -14,9 +14,14 @@ app.use('/api/v1', router)
 
 // Middlware de errores
 router.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  res.status(err.statusCode).json({
+
+  const statusCode = err.statusCode || 500;
+
+  console.log(err);
+
+  res.status(statusCode).json({
     error: true,
-    message: err.message
+    message: err.message || err
   })
 })
 

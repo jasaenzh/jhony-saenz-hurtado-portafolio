@@ -1,5 +1,4 @@
 import { AuthInterface } from "./auth.interface";
-import { SkillInterface } from "./skill.interface";
 
 export enum UserRole {
   ADMIN = 'ADMIN',
