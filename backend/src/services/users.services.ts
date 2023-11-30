@@ -1,6 +1,8 @@
 import { CreateUserDTO } from "../dto/createUser.dto";
 import { UpdateUserDTO } from "../dto/updateUser.dto";
 import { UserInterface, UserRole } from "../interfaces/user.interface";
+import Experience from "../models/experience.model";
+import Project from "../models/project.model";
 import Skill from "../models/skill.model";
 import User from "../models/user.model";
 import { ClientError } from "../utils/errorsResponse";
@@ -29,8 +31,14 @@ const findAllUsers = async (): Promise<UserInterface[]> => {
         model: Skill,
         attributes: { exclude: ['id'] },
         through: { attributes: [] },
+      },
+      {
+        model: Project
+      },
+      {
+        model: Experience
       }
-    ]
+    ],
   });
   return users
 }

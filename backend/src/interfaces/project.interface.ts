@@ -1,5 +1,6 @@
 export interface ProjectInterface {
-  addSkills(skills: any): unknown;
+  setUser(userId: string): unknown;
+  addSkills(skills: string): unknown;
   id?: string;
   projectName: string;
   description: string;
