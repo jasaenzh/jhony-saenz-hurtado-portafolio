@@ -9,7 +9,7 @@ usersRouter.get('/', getUsers)
 usersRouter.get('/:id', checkJWT, adminProfile, getUser)
 // usersRouter.post('/', postUser)
 usersRouter.patch('/:id', checkJWT, adminProfile, updateUser)
-usersRouter.delete('/:id', checkJWT, adminProfile, deleteUser)
+usersRouter.delete('/:id', deleteUser)
 
 
 export default usersRouter;

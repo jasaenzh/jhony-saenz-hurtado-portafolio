@@ -1,5 +1,5 @@
-import { CreateSkillDTO } from "../dto/createSkill.dto"
-import { UpdateSkillDTO } from "../dto/updateSkill.dto";
+import { CreateSkillDTO } from "../schemas/createSkill.dto"
+import { UpdateSkillDTO } from "../schemas/updateSkill.dto";
 import { SkillInterface } from "../interfaces/skill.interface";
 import Skill from "../models/skill.model";
 import { ClientError } from "../utils/errorsResponse";

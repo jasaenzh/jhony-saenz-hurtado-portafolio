@@ -3,9 +3,17 @@ import { findAllUsers, findByIdAndDelete, findByIdAndUpdate, findByIdUser, inser
 import { cathedAsync } from "../utils/catchedAsync";
 import { responseController } from "../utils/responseControllers";
 import { RequestExtends } from "../interfaces/reqExtends.interface";
+import { DateTime } from "luxon"
+
+const postUser = cathedAsync(async (req: Request, res: Response) => {
+  const body = req.body
+  const saveUser = await insertUser(body)
+  responseController(res, 200, saveUser)
+})
 
 const getUsers = cathedAsync(async (req: RequestExtends, res: Response) => {
   const users = await findAllUsers()
+  console.log(users.map(user => console.log(DateTime.fromJSDate(user.createdAt).setZone('America/Bogota').toISO())));
   responseController(res, 200, users)
 })
 
@@ -14,13 +22,6 @@ const getUser = cathedAsync(async (req: Request, res: Response) => {
   const user = await findByIdUser(id)
   responseController(res, 200, user)
 })
-
-const postUser = cathedAsync(async (req: Request, res: Response) => {
-  const body = req.body
-  const saveUser = await insertUser(body)
-  responseController(res, 200, saveUser)
-})
-
 
 const updateUser = cathedAsync(async (req: Request, res: Response) => {
   const { id } = req.params;

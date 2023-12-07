@@ -17,6 +17,14 @@ const registerServiceNewUser = async ({ firstName, secondName, lastName, secondL
     throw new ClientError("Usuario ya existe!");
   }
 
+  const convertToSequelizeDate = (dateString: string) => {
+    const day = dateString.split('/')[0];
+    const month = dateString.split('/')[1];
+    const year = dateString.split('/')[2];
+    const formattedDate = `${year}-${month}-${day} 00:00:00`;
+    return new Date(formattedDate);
+  };
+
   const pwdHash = await encrypt(password)
 
   const newUser = await User.create({
@@ -26,7 +34,7 @@ const registerServiceNewUser = async ({ firstName, secondName, lastName, secondL
     secondLastName,
     aboutMe,
     image,
-    birthdate,
+    birthdate: convertToSequelizeDate(birthdate),
     email,
     password: pwdHash
   })

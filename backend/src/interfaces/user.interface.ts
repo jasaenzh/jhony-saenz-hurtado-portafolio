@@ -6,6 +6,7 @@ export enum UserRole {
 }
 
 export interface UserInterface extends AuthInterface {
+  createdAt: any;
   id?: string;
   firstName: string;
   secondName: string;
@@ -13,6 +14,6 @@ export interface UserInterface extends AuthInterface {
   secondLastName: string;
   birthdate: string;
   aboutMe: string;
-  image: string;
+  image?: string;
   role: UserRole;
 }

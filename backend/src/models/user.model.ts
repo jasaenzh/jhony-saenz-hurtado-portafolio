@@ -32,7 +32,7 @@ const User = connectDB.define<UserModel>('User',
       type: DataTypes.STRING,
     },
     birthdate: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
     },
     aboutMe: {
       type: DataTypes.TEXT,
@@ -57,9 +57,10 @@ const User = connectDB.define<UserModel>('User',
     }
   },
   {
-    timestamps: false
+    timestamps: true,
   }
 )
+
 
 User.belongsToMany(Skill, { through: "UserSkill" })
 Skill.belongsToMany(User, { through: "UserSkill" })

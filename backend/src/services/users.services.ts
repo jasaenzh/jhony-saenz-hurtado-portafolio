@@ -1,6 +1,6 @@
-import { CreateUserDTO } from "../dto/createUser.dto";
-import { UpdateUserDTO } from "../dto/updateUser.dto";
-import { UserInterface, UserRole } from "../interfaces/user.interface";
+import { CreateUserDTO } from "../schemas/createUser.dto";
+import { UpdateUserDTO } from "../schemas/updateUser.dto";
+import { UserInterface } from "../interfaces/user.interface";
 import Experience from "../models/experience.model";
 import Project from "../models/project.model";
 import Skill from "../models/skill.model";
@@ -9,16 +9,36 @@ import { ClientError } from "../utils/errorsResponse";
 
 const insertUser = async (user: CreateUserDTO): Promise<UserInterface> => {
   const { firstName, secondName, lastName, secondLastName, birthdate, aboutMe } = user;
+
   if (!firstName || !lastName || !birthdate) {
     throw new ClientError("Falta informacion");
   }
+
+  console.log("FECHA DE CUMPLEAÑOS:", user.birthdate);
+
+  const convertToSequelizeDate = (dateString: string) => {
+    const [day, month, year] = dateString.split('/');
+    const formattedDate = `${year}-${month}-${day} 00:00:00`;
+    return new Date(formattedDate);
+  };
+
+  // Obtener la fecha actual
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const currentDay = String(currentDate.getDate()).padStart(2, '0');
+  const formattedCurrentDate = new Date(`${currentYear}-${currentMonth}-${currentDay}`);
+  console.log("FECHA:", formattedCurrentDate);
+
+
+
   const newUser = await User.create({
     firstName,
     secondName,
     lastName,
     secondLastName,
     aboutMe,
-    birthdate,
+    birthdate: convertToSequelizeDate(user.birthdate),
   });
   return newUser;
 }

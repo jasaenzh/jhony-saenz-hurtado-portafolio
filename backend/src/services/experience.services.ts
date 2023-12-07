@@ -1,4 +1,4 @@
-import { CreateExperienceDTO } from "../dto/createExperience.dto"
+import { CreateExperienceDTO } from "../schemas/createExperience.dto"
 import { ExperienceInterface } from "../interfaces/experience.interface"
 import { ProjectInterface } from "../interfaces/project.interface"
 import Experience from "../models/experience.model"

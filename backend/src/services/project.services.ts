@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { CreateProjectDTO } from "../dto/createProject.dto"
+import { CreateProjectDTO } from "../schemas/createProject.dto"
 import { ProjectInterface } from "../interfaces/project.interface";
 import Project from "../models/project.model";
 import { uploadFilesCloudinary } from "./uploadFileCloudinary.services";
